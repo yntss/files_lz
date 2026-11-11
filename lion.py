@@ -2,6 +2,7 @@ import docx
 import pandas as pd 
 import matplotlib.pyplot as plt
 
+print('обработка файла lion.docx...')
 doc = docx.Document('lion.docx') #Читаем документ
 text = []
 for paragraph in doc.paragraphs: #Перебираем все абзацы в документе
@@ -17,6 +18,7 @@ for letter in text_str_lower: #Перебираем все буквы в тек�
         else:
             letter_counts[letter] = 1 #Если нету, присваиваем букве значение 1
 total_letters = sum(letter_counts.values()) #Считаем общее кол-во всех букв
+print(f'Найдено букв в тексте: {total_letters}')
 letters_data = [] #Пустой список для хранения данных о буквах
 for letter, count in letter_counts.items(): #Перебираем все буквы, .items возвращает пару ключ-значение
     percent = (count/total_letters)*100 #Считаем проценты
@@ -36,6 +38,7 @@ for word in words_list:
         word_counts[word] += 1
     else:
         word_counts[word] = 1
+print(f'Найдено уникальных слов: {len(word_counts)}')
 total_words = sum(word_counts.values())
 words_data = []
 for word, count in word_counts.items():
@@ -47,10 +50,14 @@ for word, count in word_counts.items():
     }) #Начиная со строки 33 те же самые действия что и с буквами
 df_letters = pd.DataFrame(letters_data) 
 df_words = pd.DataFrame(words_data) #Сохраняем две таблицы (слова и буквы)
+print('сохранение таблиц со статистикой в Excel файлы...')
 df_letters.to_excel('letters_result.xlsx', engine='openpyxl')
 df_words.to_excel('words_result.xlsx', engine='openpyxl') #Перегоняем эти таблицы в excel
+print('построение гистограмыы...')
 df_letters.plot(x='Буква', y='Сколько раз встретилось', kind='bar') #строим столбчатую диаграмму из таблицы (kind='bar' отвечает за столбчатую диаграмму)
 plt.title('Встречаемость букв в тексте') #Заголовок
 plt.xlabel('Буквы') # ось x
 plt.ylabel('Количество') #ось y
+plt.xticks(rotation=0)
 plt.show() #выводим
+print('всё прошло успешно')
