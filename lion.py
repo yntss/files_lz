@@ -53,7 +53,7 @@ df_words = pd.DataFrame(words_data) #Сохраняем две таблицы (�
 print('сохранение таблиц со статистикой в Excel файлы...')
 df_letters.to_excel('letters_result.xlsx', engine='openpyxl')
 df_words.to_excel('words_result.xlsx', engine='openpyxl') #Перегоняем эти таблицы в excel
-print('построение гистограмыы...')
+print('построение гистограммы...')
 df_letters.plot(x='Буква', y='Сколько раз встретилось', kind='bar') #строим столбчатую диаграмму из таблицы (kind='bar' отвечает за столбчатую диаграмму)
 plt.title('Встречаемость букв в тексте') #Заголовок
 plt.xlabel('Буквы') # ось x

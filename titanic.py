@@ -24,7 +24,7 @@ plot_data = pd.DataFrame({ # Создаём таблицу для графика
     'Выжил': survived_percent,
     'Не выжил': died_percent
 }, index=classes)
-print('подсчёт завершён, построениегистограммы выживаемости...')
+print('подсчёт завершён, построение гистограммы выживаемости...')
 #Строим составную столбчатую диаграмму (stacked=True делает столбцы составными)
 plot_data.plot(kind='bar', stacked=True, color=['steelblue', 'orange'])  # stacked=True делает столбцы составными
 plt.title('Выживаемость пассажиров Титаника')  #Заголовок графика
