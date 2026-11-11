@@ -23,4 +23,9 @@ for letter in text_str_lower:
         else:
             letter_counts[letter] = 1
 print(letter_counts)
-
+wb = Workbook()
+ws = wb.active
+ws.append(['Буква', 'Встречаемость'])
+for key, value in letter_counts():
+    ws.apeend([key, value])
+wb.save('lion.xlsx')
